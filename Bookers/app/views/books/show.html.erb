@@ -1,2 +1,10 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<%= flash[:create] %>
+<%= flash[:update] %>
+
+<h2>Title:<%= @book.title %></h2>
+<h2>Body:<%= @book.body %></h2>
+
+
+<a href= '/books/<%= @book.id %>/edit'>Edit</a>
+|
+<a href='/books'>Back</a>

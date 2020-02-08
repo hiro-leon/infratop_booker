@@ -1,14 +1,40 @@
 <h1>Books</h1>
+<table width=90%>
   <tr>
     <th>Tytle</th>
     <th>Body</th>
   </tr>
   <% @books.each do |t| %>
-  <tr>
-    <td><%= t.title %></td>
-    <td><%= t.body %></td>
-    <td><%= link_to "Show", show_book_path(@t.id) %></td>
-    <td><%= link_to "Edit", edit_book_path(@t.id) %></td>
-    <td><%= link_to "Delete", book_path(@t.id), method: :delete %>
-  </tr>
+    <tr>
+      <td width=40%><%= t.title %></td>
+      <td width=40%><%= t.body %></td>
+      <td><%= link_to "Show", book_path(t.id) %></td>
+      <td><%= link_to "Edit", edit_book_path(t.id) %></td>
+      <td><%= link_to "Delete", book_path(t.id), method: :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h2>New book</h2>
+<% if @book.errors.any? %>
+  <ul>
+    <% @book.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<!-- form_for部分 -->
+<%= form_for(@book) do |f| %>
+  <div class="form-group">
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+  <h4>Body</h4>
+  <%= f.text_area :body %>
+  </div>
+  <%= f.submit 'Create Book' %>
+<% end %>
+
+
+
 
